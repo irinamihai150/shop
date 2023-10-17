@@ -1,0 +1,23 @@
+{
+	"name": "shop",
+	"version": "1.0.0",
+	"description": "eCommerce app built with MERN stack",
+	"type": "module",
+	"main": "server.js",
+	"scripts": {
+		"start": "node backend/server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/irinamihai150/shop.git"
+	},
+	"author": "irinam",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/irinamihai150/shop/issues"
+	},
+	"homepage": "https://github.com/irinamihai150/shop#readme",
+	"dependencies": {
+		"express": "^4.18.2"
+	}
+}
