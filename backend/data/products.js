@@ -1,6 +1,5 @@
 const dresses = [
 	{
-		_id: "1",
 		name: "Elegant Purple Evening Gown",
 		image: "/images/image1.jpg",
 		description:
@@ -13,7 +12,6 @@ const dresses = [
 		numReviews: 8,
 	},
 	{
-		_id: "2",
 		name: "Lace Wedding Dress",
 		image: "/images/image2.jpg",
 		description:
@@ -26,7 +24,6 @@ const dresses = [
 		numReviews: 4,
 	},
 	{
-		_id: "3",
 		name: "Bohemian Maxi Dress",
 		image: "/images/image3.jpg",
 		description:
@@ -39,7 +36,6 @@ const dresses = [
 		numReviews: 10,
 	},
 	{
-		_id: "4",
 		name: "Little Red Dress",
 		image: "/images/image4.jpg",
 		description:
@@ -52,7 +48,7 @@ const dresses = [
 		numReviews: 15,
 	},
 	{
-		_id: "5",
+
 		name: "Floral Summer Dress",
 		image: "/images/image5.jpg",
 		description:
