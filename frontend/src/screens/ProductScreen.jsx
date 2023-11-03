@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { useParams } from "react-router-dom"
 import Rating from "../components/Rating"
 import Loader from "../components/Loader"
@@ -9,6 +10,7 @@ import {
 	Image,
 	ListGroup,
 	Card,
+	Form,
 	Button,
 	ListGroupItem,
 } from "react-bootstrap"
@@ -16,6 +18,7 @@ import {
 import { useGetProductDetailsQuery } from "../slices/productsApiSlice"
 
 const ProductScreen = () => {
+	const [qty, setQty] = useState(1)
 	const { id: productId } = useParams()
 	const {
 		data: product,
@@ -78,6 +81,29 @@ const ProductScreen = () => {
 									</Row>
 								</ListGroupItem>
 								<ListGroupItem>
+									{product.countInStock > 0 && (
+										<ListGroup.Item>
+											<Row>
+												<Col>Qty</Col>
+												<Col>
+													<Form.Control
+														as='select'
+														value={qty}
+												
+														onChange={(e) => setQty(Number(e.target.value))}
+													>
+														{[...Array(product.countInStock).keys()].map(
+															(x) => (
+																<option key={x + 1} value={x + 1}>
+																	{x + 1}
+																</option>
+															)
+														)}
+													</Form.Control>
+												</Col>
+											</Row>
+										</ListGroup.Item>
+									)}
 									<Button
 										className='btn-block'
 										type='button'
