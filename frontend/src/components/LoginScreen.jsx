@@ -25,11 +25,8 @@ const LoginScreen = () => {
 	const sp = new URLSearchParams(search)
 
 	const redirect = sp.get("redirect") || "/"
-	console.log(sp)
-	console.log(redirect)
 	useEffect(() => {
 		if (userInfo) {
-			console.log(userInfo)
 			navigate(redirect)
 		}
 	}, [userInfo, redirect, navigate])
