@@ -43,10 +43,31 @@ const ProductScreen = () => {
 		useCreateProductMutation()
 
 	const { userInfo } = useSelector((state) => state.auth)
+	console.log("User Info from Redux:", userInfo)
 
 	const addToCartHandler = () => {
 		dispatch(addToCart({ ...product, qty }))
 		navigate("/cart")
+	}
+	const submitHandler = async (e) => {
+		e.preventDefault()
+
+		try {
+			console.log("Before submitting review:", { productId, rating, comment })
+			await createReview({
+				productId,
+				rating,
+				comment,
+			}).unwrap()
+			 console.log("Review submitted successfully")
+			refetch()
+			toast.success("Review Submitted")
+			setRating(0)
+			setComment("")
+		} catch (err) {
+			   console.error("Error submitting review:", err)
+			toast.error(err?.data?.message || err.error)
+		}
 	}
 	return (
 		<>
@@ -79,7 +100,6 @@ const ProductScreen = () => {
 								</ListGroupItem>
 								<ListGroupItem> Price: ${product.price} </ListGroupItem>
 								<ListGroupItem>
-									{" "}
 									Description: {product.description}
 								</ListGroupItem>
 							</ListGroup>
@@ -162,7 +182,7 @@ const ProductScreen = () => {
 									<h2>Write a Customer Review</h2>
 									{loadingProductReview && <Loader />}
 									{userInfo ? (
-										<Form>
+										<Form onSubmit={submitHandler}>
 											<Form.Group controlId='rating' className='my-2'>
 												<Form.Label>Rating</Form.Label>
 												<Form.Control

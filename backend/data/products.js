@@ -9,7 +9,7 @@ const dresses = [
 		price: 199.99,
 		countInStock: 15,
 		rating: 3.7,
-		numReviews: 8,
+		numReviews: 0,
 	},
 	{
 		name: "Lace Wedding Dress",
@@ -21,7 +21,7 @@ const dresses = [
 		price: 599.99,
 		countInStock: 10,
 		rating: 4.9,
-		numReviews: 4,
+		numReviews: 0,
 	},
 	{
 		name: "Bohemian Maxi Dress",
@@ -33,7 +33,7 @@ const dresses = [
 		price: 69.99,
 		countInStock: 20,
 		rating: 4.5,
-		numReviews: 10,
+		numReviews: 0,
 	},
 	{
 		name: "Little Red Dress",
@@ -45,10 +45,9 @@ const dresses = [
 		price: 59.99,
 		countInStock: 0,
 		rating: 4.3,
-		numReviews: 15,
+		numReviews: 0,
 	},
 	{
-
 		name: "Floral Summer Dress",
 		image: "/images/image5.jpg",
 		description:
@@ -58,7 +57,7 @@ const dresses = [
 		price: 39.99,
 		countInStock: 30,
 		rating: 2.6,
-		numReviews: 2,
+		numReviews: 0,
 	},
 ]
 
