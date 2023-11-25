@@ -6,17 +6,23 @@ import Footer from "./components/Footer"
 import Header from "./components/Header"
 
 function App() {
+	const appStyle = {
+		backgroundImage: `url(/images/background.jpg)`,
+		backgroundSize: "cover",
+		backgroundRepeat: "no-repeat",
+	}
+
 	return (
-		<>
+		<div style={appStyle}>
 			<Header />
-			<main className='py-3'>
+			<main className='py-2'>
 				<Container>
 					<Outlet />
 				</Container>
 			</main>
 			<Footer />
-			<ToastContainer/>
-		</>
+			<ToastContainer />
+		</div>
 	)
 }
 

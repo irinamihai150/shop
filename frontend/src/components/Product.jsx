@@ -11,7 +11,7 @@ const Product = ({ product }) => {
 					src={product.image}
 					variant='top'
 				className="card-img"
-					// style={{ height: "300px" }}
+
 				></Card.Img>
 			</Link>
 			<Card.Body>

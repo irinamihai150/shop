@@ -1,5 +1,21 @@
-main {
-	min-height: 80vh;
+/* main {
+	min-height: 100vh;
+} */
+.home-screen-container {
+	min-height: 100vh; /* Ensure the container takes at least the full viewport height */
+	padding: 20px; /* Adjust padding as needed */
+	box-sizing: border-box; /* Include padding in the total width/height */
+}
+.custom-navbar {
+	color: #ffbf00;
+}
+.custom-brand {
+	font-size: 2rem;
+	weight: bold;
+	margin-right: 5px;
+}
+.logo {
+	margin-right: 20px;
 }
 
 .rating span {

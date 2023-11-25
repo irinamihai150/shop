@@ -27,10 +27,25 @@ const Header = () => {
 	}
 	return (
 		<header>
-			<Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
+			<Navbar
+				bg='dark'
+				variant='dark'
+				expand='lg'
+				collapseOnSelect
+				className='custom-navbar'
+				style={{ height: "150px" }}
+			>
 				<Container>
+					<img
+						src='/images/logo.jpg'
+						alt='Chic Boutique Logo'
+						height='100px'
+						className='d-inline-block align-top rounded-circle logo '
+					/>
 					<LinkContainer to='/'>
-						<Navbar.Brand>Shop</Navbar.Brand>
+						<Navbar.Brand className='text-warning custom-brand'>
+							Chic Boutique
+						</Navbar.Brand>
 					</LinkContainer>
 
 					<Navbar.Toggle aria-controls='basic-navbar-nav' />
@@ -39,11 +54,11 @@ const Header = () => {
 						<Nav className='ms-auto'>
 							<SearchBox />
 							<LinkContainer to='/cart'>
-								<Nav.Link>
-									<FaShoppingCart />
+								<Nav.Link className='text-warning'>
+									<FaShoppingCart className='text-warning' />
 									Cart
 									{cartItems.length > 0 && (
-										<Badge pill bg='success' style={{ marginLeft: "5px" }}>
+										<Badge pill bg='success' style={{ marginLeft: "8px" }}>
 											{cartItems.reduce((a, c) => a + c.qty, 0)}
 										</Badge>
 									)}
