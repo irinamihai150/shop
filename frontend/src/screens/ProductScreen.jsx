@@ -13,7 +13,6 @@ import {
 	Form,
 	Button,
 	ListGroupItem,
-	FormGroup,
 } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -43,7 +42,6 @@ const ProductScreen = () => {
 		useCreateProductMutation()
 
 	const { userInfo } = useSelector((state) => state.auth)
-	console.log("User Info from Redux:", userInfo)
 
 	const addToCartHandler = () => {
 		dispatch(addToCart({ ...product, qty }))
@@ -53,19 +51,16 @@ const ProductScreen = () => {
 		e.preventDefault()
 
 		try {
-			console.log("Before submitting review:", { productId, rating, comment })
 			await createReview({
 				productId,
 				rating,
 				comment,
 			}).unwrap()
-			 console.log("Review submitted successfully")
 			refetch()
 			toast.success("Review Submitted")
 			setRating(0)
 			setComment("")
 		} catch (err) {
-			   console.error("Error submitting review:", err)
 			toast.error(err?.data?.message || err.error)
 		}
 	}
@@ -85,7 +80,11 @@ const ProductScreen = () => {
 				<>
 					<Row>
 						<Col md={5}>
-							<Image src={product.image} alt={product.name} fluid />
+							<Image
+								className='img-fluid'
+								src={product.image}
+								alt={product.name}
+							/>
 						</Col>
 						<Col md={4}>
 							<ListGroup variant='flush'>
