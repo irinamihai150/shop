@@ -2,7 +2,7 @@ import path from "path"
 import express from "express"
 import productRoutes from "./routes/productRoutes.js"
 import userRoutes from "./routes/userRoutes.js"
-import orderRoutes from "./routes/orderRoutes.js"
+import OrderRoutes from "./routes/OrderRoutes.js"
 import dotenv from "dotenv"
 import cors from "cors"
 import cookieParser from "cookie-parser"
@@ -26,7 +26,7 @@ app.use(cookieParser())
 app.use(cors())
 app.use("/api/products", productRoutes)
 app.use("/api/users", userRoutes)
-app.use("/api/orders", orderRoutes)
+app.use("/api/orders", OrderRoutes)
 app.use("/api/upload", uploadRoutes)
 
 app.get("/api/config/paypal", (req, res) =>
