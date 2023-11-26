@@ -24,6 +24,7 @@ const ProductEditScreen = () => {
 
 	const [updateProduct, { isLoading: loadingUpdate }] =
 		useUpdateProductMutation()
+
 	const [uploadProductImage, { isLoading: loadingUpload }] =
 		useUploadProductImageMutation()
 
@@ -62,8 +63,7 @@ const ProductEditScreen = () => {
 			countInStock,
 			description,
 		}
-		console.log("Product details:", product)
-		console.log(updatedProduct, "update")
+
 		const result = await updateProduct(updatedProduct)
 		if (result.error) {
 			toast.error(result.error)
@@ -131,7 +131,7 @@ const ProductEditScreen = () => {
 								onChange={uploadFileHandler}
 							></Form.Control>
 						</Form.Group>
-
+						{loadingUpload && <Loader />}
 						<Form.Group controlId='brand' className='my-2'>
 							<Form.Label>Brand</Form.Label>
 							<Form.Control

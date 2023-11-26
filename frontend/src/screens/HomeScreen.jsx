@@ -6,6 +6,8 @@ import Loader from "../components/Loader"
 import Message from "../components/Message"
 import Paginate from "../components/Paginate"
 import ScrollToTopButton from "../components/ScrollToTopButton"
+import ProductCarousel from "../components/ProductCarousel"
+// import Meta from "../components/Meta"
 
 const HomeScreen = () => {
 	const { pageNumber, keyword } = useParams()
@@ -16,7 +18,9 @@ const HomeScreen = () => {
 
 	return (
 		<div>
-			{keyword && (
+			{!keyword ? (
+				<ProductCarousel />
+			) : (
 				<Link to='/' className='btn btn-light mb-4'>
 					Go Back
 				</Link>
@@ -25,20 +29,15 @@ const HomeScreen = () => {
 				<Loader />
 			) : error ? (
 				<Message variant='danger'>
-					{error?.data?.message || error.error}
+					Oops! Something went wrong. Please try again later.
 				</Message>
 			) : (
 				<>
+					{/* <Meta title='Hello' /> */}
 					<h1>Our Products</h1>
 					<Row>
 						{data.products.map((product) => (
-							<Col
-								key={product._id}
-								sm={12}
-								md={6}
-								lg={4}
-								xl={3}
-							>
+							<Col key={product._id} sm={12} md={6} lg={4} xl={3}>
 								<Product product={product} />
 							</Col>
 						))}

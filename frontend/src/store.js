@@ -9,7 +9,7 @@ const store = configureStore({
 		cart: cartSliceReducer,
 		auth: authSliceReducer,
 	},
-	//eslint-disable-next-line
+
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware().concat(apiSlice.middleware),
 	devTools: true,

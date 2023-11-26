@@ -10,13 +10,16 @@ const Product = ({ product }) => {
 				<Card.Img
 					src={product.image}
 					variant='top'
-				className="card-img"
-
+					className='card-img'
 				></Card.Img>
 			</Link>
 			<Card.Body>
 				<Link to={`/product/${product._id}`}>
-					<Card.Title as='div' className='product-title'>
+					<Card.Title
+						as='div'
+						className='product-title'
+						style={{ color: "black" }}
+					>
 						<strong>{product.name} </strong>
 					</Card.Title>
 				</Link>

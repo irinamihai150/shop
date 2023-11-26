@@ -3,7 +3,7 @@ import Product from "../models/productModel.js"
 //desc fetch all products
 //route GET /api/products
 const getProducts = asyncHandler(async (req, res) => {
-	const pageSize = 8
+	const pageSize = process.env.PAGINATION_LIMIT
 	const page = Number(req.query.pageNumber) || 1
 
 	const keyword = req.query.keyword
@@ -61,9 +61,6 @@ const updateProduct = asyncHandler(async (req, res) => {
 
 	try {
 		const product = await Product.findById(req.params.id)
-		console.log("Received Product ID:", req.params.id)
-
-		console.log("Received Product ID:", req.params.id)
 		if (product) {
 			console.log("Updating product with the following data:", {
 				name,
@@ -86,7 +83,6 @@ const updateProduct = asyncHandler(async (req, res) => {
 			product.description = description
 
 			const updatedProduct = await product.save()
-			console.log("Updated Product:", updatedProduct)
 			res.json(updatedProduct)
 		} else {
 			res.status(404)
@@ -155,6 +151,10 @@ const createProductReview = asyncHandler(async (req, res) => {
 		throw new Error("Resource not found")
 	}
 })
+const getTopProducts = asyncHandler(async (req, res) => {
+	const products = await Product.find({}).sort({ rating: -1 }).limit(3)
+	res.status(200).json(products)
+})
 
 export {
 	getProducts,
@@ -163,4 +163,5 @@ export {
 	updateProduct,
 	deleteProduct,
 	createProductReview,
+	getTopProducts,
 }
