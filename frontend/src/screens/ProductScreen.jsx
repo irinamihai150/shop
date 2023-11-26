@@ -17,7 +17,7 @@ import {
 import { useDispatch, useSelector } from "react-redux"
 import {
 	useGetProductDetailsQuery,
-	useCreateProductMutation,
+	useCreateReviewMutation,
 } from "../slices/productsApiSlice"
 import { addToCart } from "../slices/cartSlice"
 import { toast } from "react-toastify"
@@ -39,7 +39,7 @@ const ProductScreen = () => {
 	} = useGetProductDetailsQuery(productId)
 
 	const [createReview, { isLoading: loadingProductReview }] =
-		useCreateProductMutation()
+		useCreateReviewMutation()
 
 	const { userInfo } = useSelector((state) => state.auth)
 
@@ -173,7 +173,7 @@ const ProductScreen = () => {
 									<ListGroup.Item key={review._id}>
 										<strong>{review.name}</strong>
 										<Rating value={review.rating} />
-										<p>{review.createAt.substring(0, 10)}</p>
+										<p>{review.createdAt.substring(0, 10)}</p>
 										<p>{review.comment}</p>
 									</ListGroup.Item>
 								))}

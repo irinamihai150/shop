@@ -113,84 +113,23 @@ const deleteProduct = asyncHandler(async (req, res) => {
 
 // create a new review
 // POST /api/products/:id/reviews
-// const createProductReview = asyncHandler(async (req, res) => {
-// 	try {
-// 		const { rating, comment } = req.body
-
-// 		console.log("Before creating review. User Info:", req.user)
-// 		if (!req.user.isAdmin) {
-// 			console.log("User does not have admin rights. Sending 401 Unauthorized.")
-// 			res.status(401)
-// 			throw new Error("Not authorized as admin")
-// 		}
-
-// 		const product = await Product.findById(req.params.id)
-
-// 		if (product) {
-// 			console.log("Product found:", product)
-
-// 			const alreadyReviewed = product.reviews.find(
-// 				(review) => review.user.toString() === req.user._id.toString()
-// 			)
-
-// 			if (alreadyReviewed) {
-// 				console.log("Product already reviewed.")
-// 				res.status(400)
-// 				throw new Error("Product already reviewed")
-// 			}
-
-// 			const review = {
-// 				name: req.user.name,
-// 				rating: Number(rating),
-// 				comment,
-// 				user: req.user._id,
-// 			}
-
-// 			product.reviews.push(review)
-// 			product.numReviews = product.reviews.length
-
-// 			product.rating =
-// 				product.reviews.reduce((acc, review) => acc + review.rating, 0) /
-// 				product.reviews.length
-
-// 			await product.save()
-// 			console.log("Review added successfully. Sending 201 Created.")
-// 			res.status(201).json({ message: "Review added" })
-// 		} else {
-// 			console.log("Product not found. Sending 404 Not Found.")
-// 			res.status(404)
-// 			throw new Error("Resource not found")
-// 		}
-// 	} catch (error) {
-// 		console.error("Error in createProductReview:", error.message)
-// 		res.status(res.statusCode || 500).json({ message: error.message })
-// 	}
-// })
 
 const createProductReview = asyncHandler(async (req, res) => {
-	try {
-		const { rating, comment } = req.body
+	const { rating, comment } = req.body
 
-		console.log("Before creating review. User Info:", req.user)
+	// if (req.user.isAdmin) {
+	// 	res.status(401)
+	// 	throw new Error("Not authorized as admin")
+	// }
 
-		const product = await Product.findById(req.params.id)
+	const product = await Product.findById(req.params.id)
 
-		console.log("Product found:", product)
-
-		if (!product) {
-			console.log("Product not found. Sending 404 Not Found.")
-			res.status(404)
-			throw new Error("Resource not found")
-		}
-
+	if (product) {
 		const alreadyReviewed = product.reviews.find(
 			(review) => review.user.toString() === req.user._id.toString()
 		)
 
-		console.log("Already reviewed:", alreadyReviewed)
-
 		if (alreadyReviewed) {
-			console.log("Product already reviewed. Sending 400 Bad Request.")
 			res.status(400)
 			throw new Error("Product already reviewed")
 		}
@@ -210,11 +149,10 @@ const createProductReview = asyncHandler(async (req, res) => {
 			product.reviews.length
 
 		await product.save()
-		console.log("Review added successfully. Sending 201 Created.")
 		res.status(201).json({ message: "Review added" })
-	} catch (error) {
-		console.error("Error in createProductReview:", error.message)
-		res.status(res.statusCode || 500).json({ message: error.message })
+	} else {
+		res.status(404)
+		throw new Error("Resource not found")
 	}
 })
 

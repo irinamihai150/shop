@@ -19,5 +19,5 @@ router
 	.get(getProductById)
 	.put(protect, admin, updateProduct)
 	.delete(protect, admin, deleteProduct)
-router.route("/:id/reviews").post(protect, createProduct)
+router.route("/:id/reviews").post(protect, createProductReview)
 export default router
