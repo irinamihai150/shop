@@ -31,7 +31,10 @@ const ProductScreen = () => {
 	const [qty, setQty] = useState(1)
 	const [rating, setRating] = useState(0)
 	const [comment, setComment] = useState("")
-
+	const [showReviewSection, setShowReviewSection] = useState(false)
+	const toggleReviewSection = () => {
+		setShowReviewSection(!showReviewSection)
+	}
 	const {
 		data: product,
 		isLoading,
@@ -154,7 +157,7 @@ const ProductScreen = () => {
 											</ListGroup.Item>
 										)}
 										<Button
-											className='btn-block'
+											className='btn-block btn-dark'
 											type='button'
 											disabled={product.countInStock === 0}
 											onClick={addToCartHandler}
@@ -166,6 +169,7 @@ const ProductScreen = () => {
 							</Card>
 						</Col>
 					</Row>
+
 					<Row className='review'>
 						<Col md={6}>
 							<h2>Reviews</h2>
@@ -180,46 +184,60 @@ const ProductScreen = () => {
 									</ListGroup.Item>
 								))}
 								<ListGroup.Item>
-									<h2>Write a Customer Review</h2>
-									{loadingProductReview && <Loader />}
-									{userInfo ? (
-										<Form onSubmit={submitHandler}>
-											<Form.Group controlId='rating' className='my-2'>
-												<Form.Label>Rating</Form.Label>
-												<Form.Control
-													as='select'
-													value={rating}
-													onChange={(e) => setRating(Number(e.target.value))}
-												>
-													<option value=''>Select</option>
-													<option value='1'>1- Poor</option>
-													<option value='2'>2- Fair</option>
-													<option value='3'>3-Good</option>
-													<option value='4'>4-Very Good</option>
-													<option value='5'>5-Excellent</option>
-												</Form.Control>
-											</Form.Group>
-											<Form.Group controlId='comment' className='my-2'>
-												<Form.Label>Comment</Form.Label>
-												<Form.Control
-													as='textarea'
-													row='3'
-													value={comment}
-													onChange={(e) => setComment(e.target.value)}
-												></Form.Control>
-											</Form.Group>
-											<Button
-												disabled={loadingProductReview}
-												type='submit'
-												variant='primary'
-											>
-												Submit
-											</Button>
-										</Form>
-									) : (
-										<Message>
-											Please <Link to='/login'></Link>sign in to write a review
-										</Message>
+									<h2>
+										<Button
+											onClick={toggleReviewSection}
+											className='btn btn-dark'
+										>
+											Write a Customer Review
+										</Button>
+									</h2>
+									{showReviewSection && (
+										<>
+											{loadingProductReview && <Loader />}
+											{userInfo ? (
+												<Form onSubmit={submitHandler}>
+													<Form.Group controlId='rating' className='my-2'>
+														<Form.Label>Rating</Form.Label>
+														<Form.Control
+															as='select'
+															value={rating}
+															onChange={(e) =>
+																setRating(Number(e.target.value))
+															}
+														>
+															<option value=''>Select</option>
+															<option value='1'>1- Poor</option>
+															<option value='2'>2- Fair</option>
+															<option value='3'>3-Good</option>
+															<option value='4'>4-Very Good</option>
+															<option value='5'>5-Excellent</option>
+														</Form.Control>
+													</Form.Group>
+													<Form.Group controlId='comment' className='my-2'>
+														<Form.Label>Comment</Form.Label>
+														<Form.Control
+															as='textarea'
+															row='3'
+															value={comment}
+															onChange={(e) => setComment(e.target.value)}
+														></Form.Control>
+													</Form.Group>
+													<Button
+														disabled={loadingProductReview}
+														type='submit'
+														variant='primary'
+													>
+														Submit
+													</Button>
+												</Form>
+											) : (
+												<Message>
+													Please <Link to='/login'>sign in</Link> to write a
+													review
+												</Message>
+											)}
+										</>
 									)}
 								</ListGroup.Item>
 							</ListGroup>
