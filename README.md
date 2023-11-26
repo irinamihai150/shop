@@ -1,4 +1,6 @@
 # eCommerce Project with React and Redux, Bootstrap.
+![ecommerce page](![Screenshot (128)](https://github.com/irinamihai150/shop/assets/104944750/a1624529-bdc1-4595-a312-96e98e124f9a)
+)
 ## Overview
 This project is an eCommerce application built using React and Redux. It follows [Build an eCommerce platform from the ground up with React, Redux Toolkit, Express & MongoDB(Udemy- Brad Traversy)] for implementation.
 ### Customer/User Features:
@@ -6,7 +8,7 @@ This project is an eCommerce application built using React and Redux. It follows
    - View a list of available products with details such as name, price, and images.
 
 2. **Product Details:**
-   - Click on a product to view detailed information, including images, description.
+   - Click on a product to view detailed information, including images, descriptions.
 
 3. **Add to Cart:**
    - Easily add products to the shopping cart for future checkout.
