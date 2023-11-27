@@ -1,6 +1,7 @@
 import asyncHandler from "../middleware/asyncHandler.js"
 import User from "../models/userModel.js"
 import generateToken from "../utils/generateToken.js"
+import zxcvbn from "zxcvbn"
 
 //desc auth user and get token
 //route GET /api/users/login
@@ -34,7 +35,16 @@ const registerUser = asyncHandler(async (req, res) => {
 		res.status(400)
 		throw new Error("User already exists")
 	}
+	// Check password strength using zxcvbn
+	const passwordStrength = zxcvbn(password)
+	console.log("Password Strength:", passwordStrength)
 
+	if (passwordStrength.score < 3) {
+		res.status(400)
+		throw new Error(
+			"Password is not strong enough.Please use a stronger password"
+		)
+	}
 	const user = await User.create({
 		name,
 		email,
