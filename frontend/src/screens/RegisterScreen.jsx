@@ -15,7 +15,8 @@ const RegisterScreen = () => {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 	const [confirmPassword, setConfirmPassword] = useState("")
-	const [showPassword, setShowPassword] = useState(false) // Add state to manage password visibility
+	const [showPassword, setShowPassword] = useState(false)
+	// const [role, setRole] = useState("user") 
 
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
