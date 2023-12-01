@@ -1,0 +1,25 @@
+{
+	"version": 2,
+	"builds": [
+		{ "src": "frontend/package.json", "use": "@vercel/static-build" },
+		{ "src": "backend/package.json", "use": "@vercel/node" }
+	],
+	"routes": [
+		{ "src": "/api/(.*)", "dest": "backend/$1" },
+		{ "src": "/(.*)", "dest": "frontend/$1" }
+	],
+	"env": {
+		"NODE_ENV": "production"
+	},
+	"install": {
+		"include": ["frontend/**", "backend/**"],
+		"exclude": ["frontend/node_modules/**", "backend/node_modules/**"],
+		"dest": "."
+	},
+	"scripts": {
+		"build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
+		"dev": "concurrently \"npm run server\" \"npm run client\"",
+		"start": "node backend/server.js",
+		"install": "npm install"
+	}
+}
