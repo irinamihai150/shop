@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux"
 import Loader from "../components/Loader"
 import FormContainer from "../components/FormContainer"
 import CheckPassword from "../components/CheckPassword"
+import { FaEye, FaEyeSlash } from "react-icons/fa"
 
 const RegisterScreen = () => {
 	const [name, setName] = useState("")
@@ -16,7 +17,7 @@ const RegisterScreen = () => {
 	const [password, setPassword] = useState("")
 	const [confirmPassword, setConfirmPassword] = useState("")
 	const [showPassword, setShowPassword] = useState(false)
-	// const [role, setRole] = useState("user") 
+	// const [role, setRole] = useState("user")
 
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
@@ -95,7 +96,7 @@ const RegisterScreen = () => {
 							className='ml-2'
 							onClick={togglePasswordVisibility}
 						>
-							{showPassword ? "Hide" : "Show"}
+							{showPassword ? <FaEye /> : <FaEyeSlash />}
 						</Button>
 					</div>
 				</Form.Group>
@@ -115,7 +116,7 @@ const RegisterScreen = () => {
 							className='ml-2'
 							onClick={togglePasswordVisibility}
 						>
-							{showPassword ? "Hide" : "Show"}
+							{showPassword ? <FaEye /> : <FaEyeSlash />}
 						</Button>
 					</div>
 				</Form.Group>
