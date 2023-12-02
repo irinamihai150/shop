@@ -35,7 +35,7 @@ import UserEditScreen from "./screens/UserEditScreen"
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path='/' element={<App />}>
-			<Route index={true} path='/' element={<HomeScreen />}></Route>
+			<Route index={true} element={<HomeScreen />}></Route>
 			<Route path='/search/:keyword' element={<HomeScreen />}></Route>
 			<Route path='/page/:pageNumber' element={<HomeScreen />}></Route>
 			<Route
